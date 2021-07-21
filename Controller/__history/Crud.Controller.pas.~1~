@@ -1,0 +1,70 @@
+unit Crud.Controller;
+
+interface
+
+uses
+FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Stan.ExprFuncs,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Comp.UI,
+  Data.DB,
+  FireDAC.Comp.Client,
+  Crud.Controller.Interfaces,
+  Crud.Model.Entity.Categoria,
+  Crud.Model.Entity.Produto;
+
+type
+  TController = class(TInterfacedObject, iController)
+    private
+      FCategorias : iControllerServices<TCategoria>;
+      FProdutos   : iControllerServices<TProduto>;
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New : iController;
+      function Pedidos : iControllerServices<TPedidos>;
+      function PedidoItens : iControllerServices<TPedidoItens>;
+  end;
+
+implementation
+
+constructor TController.Create;
+begin
+
+end;
+
+destructor TController.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TController.New : iController;
+begin
+  Result := Self.Create;
+end;
+
+function TController.PedidoItens: iControllerServices<TPedidoItens>;
+begin
+  if not Assigned(FPedidoItens) then
+    FPedidoItens := TControllerGeneric<TPedidoItens>.New(Self);
+  Result := FPedidoItens;
+end;
+
+function TController.Pedidos: iControllerServices<TPedidos>;
+begin
+  if not Assigned(FPedidos) then
+    FPedidos := TControllerGeneric<TPedidos>.New(Self);
+  Result := FPedidos;
+end;
+
+end.
+

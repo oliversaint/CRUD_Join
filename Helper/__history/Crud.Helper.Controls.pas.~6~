@@ -1,0 +1,67 @@
+unit Crud.Helper.Controls;
+
+interface
+
+uses
+  Vcl.ExtCtrls,
+  Vcl.Buttons,
+  Vcl.Graphics,
+  Vcl.ComCtrls,
+  Vcl.DBGrids,
+  FireDAC.Comp.Client;
+
+procedure focar_botao(APainel: TPanel; ABotao: TSpeedButton; AFocar: Boolean);
+procedure ocultar_tabs(APageControl : TPageControl);
+procedure ordena_grid(AQuery: TFDQuery; AColuna: TColumn);
+
+implementation
+
+procedure ordena_grid(AQuery: TFDQuery; AColuna: TColumn);
+begin
+
+  if AQuery.IndexFieldNames = AColuna.FieldName then
+    AQuery.IndexFieldNames := AColuna.FieldName + ':D'
+  else
+    AQuery.IndexFieldNames := AColuna.FieldName;
+
+  AQuery.First;
+
+end;
+
+procedure focar_botao(APainel: TPanel; ABotao: TSpeedButton; AFocar: Boolean);
+begin
+
+  if AFocar then begin
+    ABotao.Font.Color := clBlack;
+    ABotao.Font.Style := [fsBold];
+
+    APainel.Parent  := ABotao.Parent;
+    APainel.Left    := ABotao.Left ;
+    APainel.Top     := ABotao.Top ;
+    APainel.Height  := ABotao.Height -1;
+
+    APainel.Visible := True;
+    APainel.BringToFront;
+
+  end else begin
+    ABotao.Font.Color := $00626262;
+    ABotao.Font.Style := [];
+    APainel.Visible   := False;
+  end;
+
+end;
+
+procedure ocultar_tabs(APageControl : TPageControl);
+var
+  page :Integer;
+begin
+
+  for page := 0 to APageControl.PageCount - 1 do
+    APageControl.Pages[page].tabvisible := False;
+
+  APageControl.ActivePageIndex := 0;
+
+end;
+
+
+end.

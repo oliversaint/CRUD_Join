@@ -1,0 +1,52 @@
+unit Crud.Helper.Controls;
+
+interface
+
+uses
+  Vcl.ExtCtrls,
+  Vcl.Buttons,
+  Vcl.Graphics,
+  Vcl.ComCtrls;
+
+procedure focar_botao(APainel: TPanel; ABotao: TSpeedButton; AFocar: Boolean);
+procedure ocultar_tabs (PageControl : TPageControl);
+
+implementation
+
+procedure focar_botao(APainel: TPanel; ABotao: TSpeedButton; AFocar: Boolean);
+begin
+
+  if AFocar then begin
+    ABotao.Font.Color := clBlack;
+    ABotao.Font.Style := [fsBold];
+
+    APainel.Parent  := ABotao.Parent;
+    APainel.Left    := ABotao.Left ;
+    APainel.Top     := ABotao.Top ;
+    APainel.Height  := ABotao.Height -1;
+
+    APainel.Visible := True;
+    APainel.BringToFront;
+
+  end else begin
+    ABotao.Font.Color := $00626262;
+    ABotao.Font.Style := [];
+    APainel.Visible   := False;
+  end;
+
+end;
+
+procedure ocultar_tabs (PageControl : TPageControl);
+var
+  page :Integer;
+begin
+
+  for page := 0 to PageControl.PageCount - 1 do
+    PageControl.Pages[page].tabvisible := False;
+
+  PageControl.ActivePageIndex := 0;
+
+end;
+
+
+end.

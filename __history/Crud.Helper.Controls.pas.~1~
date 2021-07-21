@@ -1,0 +1,36 @@
+unit Crud.Helper.Controls;
+
+interface
+
+uses
+  Vcl.ExtCtrls,
+  Vcl.Buttons;
+
+procedure focar_botao(APainel: TPanel; ABotao: TSpeedButton; AFocar: Boolean);
+
+implementation
+
+procedure focar_botao(APainel: TPanel; ABotao: TSpeedButton; AFocar: Boolean);
+begin
+
+  if Focar then begin
+    Botao.Font.Color := clBlack;
+
+    Painel.Parent  := Botao.Parent;
+    Painel.Left    := Botao.Left ;//+ ( Botao.Width - 2);
+    Painel.Top     := Botao.Top ;//+ ( Botao.Height - 2);
+    Painel.Height  := Botao.Height -1;
+
+    Painel.Visible := True;
+    Painel.BringToFront;
+
+  end else
+  begin
+    Botao.Font.Color := $00626262;
+    Botao.Font.Style := [];
+    Painel.Visible   := False;
+  end;
+
+end;
+
+end.

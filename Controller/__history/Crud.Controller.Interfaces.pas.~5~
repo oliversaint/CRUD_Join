@@ -1,0 +1,41 @@
+unit Crud.Controller.Interfaces;
+
+interface
+
+uses
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.MySQLDef,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Comp.UI,
+  FireDAC.Phys.MySQL,
+  Data.DB,
+  FireDAC.Comp.Client,
+  Crud.Model.Entity.Categoria,
+  Crud.Model.Entity.Produto,
+  Crud.Services.Generic;
+
+type
+  iControllerServices<T : class> = interface;
+
+  iController = interface
+    ['{16377A38-BF61-4D42-B438-FD21A7F93416}']
+    function Categoria : iControllerServices<TCategoriaProduto>;
+    function Produto : iControllerServices<TProduto>;
+  end;
+
+  iControllerServices<T: class> = interface
+    function This : iService<T>;
+    function &End: IController;
+  end;
+
+implementation
+
+end.

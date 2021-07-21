@@ -1,0 +1,33 @@
+inherited ProductView: TProductView
+  Caption = 'ProductView'
+  PixelsPerInch = 96
+  TextHeight = 15
+  inherited pnl_fundo: TPanel
+    inherited pgc_dados: TPageControl
+      inherited tbs_dados_gerais: TTabSheet
+        object Label1: TLabel
+          Left = 24
+          Top = 16
+          Width = 87
+          Height = 15
+          Caption = 'C'#243'digo Produto'
+        end
+        object edt_id_produto: TEdit
+          Left = 24
+          Top = 37
+          Width = 87
+          Height = 23
+          Enabled = False
+          TabOrder = 0
+        end
+      end
+    end
+    inherited pnl_botoes: TPanel
+      inherited btn_dados_gerais: TSpeedButton
+        ExplicitLeft = 4
+        ExplicitTop = 4
+        ExplicitHeight = 35
+      end
+    end
+  end
+end
